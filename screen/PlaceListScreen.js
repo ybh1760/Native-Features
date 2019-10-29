@@ -1,7 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-export default function PlaceListScreen() {
+import HeaderButton from '../components/atoms/HeaderButton'
+
+export default function PlaceListScreen(props) {
     return (
         <View style={styles.screen}>
             <Text>Place List Screen</Text>
@@ -9,8 +12,21 @@ export default function PlaceListScreen() {
     )
 }
 
-PlaceListScreen.navigationOptions = {
-    headerTitle: 'Place List',
+PlaceListScreen.navigationOptions = props => {
+    return {
+        headerTitle: 'Place List',
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title="add"
+                    iconName={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
+                    onPress={() => {
+                        props.navigation.navigate('New')
+                    }}
+                />
+            </HeaderButtons>
+        ),
+    }
 }
 
 const styles = StyleSheet.create({

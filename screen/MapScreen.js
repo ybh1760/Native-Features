@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function MapScreen() {
+export default function MapScreen(props) {
     return (
         <View style={styles.screen}>
             <Text>Map Screen</Text>

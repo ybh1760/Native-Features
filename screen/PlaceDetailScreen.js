@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function PlaceDetailScreen() {
+export default function PlaceDetailScreen(props) {
     return (
         <View style={styles.screen}>
             <Text>Place Detail Screen</Text>
