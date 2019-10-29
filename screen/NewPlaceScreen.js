@@ -7,17 +7,21 @@ import {
     TextInput,
     Button,
 } from 'react-native'
+import { useDispatch } from 'react-redux'
 
+import * as placeActions from '../store/place-actions'
 import Colors from '../constants/Colors'
 
 export default function NewPlaceScreen(props) {
     const [title, setTitle] = useState('')
+    const dispatch = useDispatch()
 
     const titleChangeHandler = text => {
         setTitle(text)
     }
-    const submitHandler = () => {
-        // redux에 저장
+    const savePlaceHandler = () => {
+        dispatch(placeActions.addPlace(title))
+        props.navigation.goBack()
     }
     return (
         <ScrollView>
@@ -31,7 +35,7 @@ export default function NewPlaceScreen(props) {
                 <Button
                     title="Save Place"
                     color={Colors.primary}
-                    onPress={submitHandler}
+                    onPress={savePlaceHandler}
                 />
             </View>
         </ScrollView>
