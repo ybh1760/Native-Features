@@ -9,8 +9,8 @@ export default function PlaceDetailScreen(props) {
     )
 }
 
-PlaceDetailScreen.navigationOptions = {
-    headerTitle: 'Place Detail',
+PlaceDetailScreen.navigationOptions = navData => {
+    return { headerTitle: navData.navigation.getParam('title') }
 }
 
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@ import { ADD_PLACE } from './place-actions'
 import Place from '../models/Place'
 
 const initialState = {
-    place: [],
+    places: [],
 }
 
 export const placeReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const placeReducer = (state = initialState, action) => {
                 action.placeData.title
             )
             return {
-                place: state.place.concat(newPlace),
+                places: state.places.concat(newPlace),
             }
         default:
             return state
