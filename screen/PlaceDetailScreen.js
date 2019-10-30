@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
-export default function PlaceDetailScreen(props) {
+const PlaceDetailScreen = props => {
     return (
         <View style={styles.screen}>
-            <Text>Place Detail Screen</Text>
+            <Text></Text>
         </View>
     )
 }
@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 })
+
+export default PlaceDetailScreen
