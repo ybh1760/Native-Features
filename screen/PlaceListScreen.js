@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Platform, FlatList } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import HeaderButton from '../components/atoms/HeaderButton'
 import PlaceItem from '../components/molecules/PlaceItem'
+import * as placeActions from '../store/place-actions'
 
 export default function PlaceListScreen(props) {
     const placeList = useSelector(state => state.place.places)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(placeActions.setPlaces())
+    }, [])
 
     const renderPlace = itemData => {
         return (
