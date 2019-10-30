@@ -12,7 +12,7 @@ export default function PlaceListScreen(props) {
     const renderPlace = itemData => {
         return (
             <PlaceItem
-                image={null}
+                image={itemData.item.imageUri}
                 title={itemData.item.title}
                 address={''}
                 onSelect={() => {

@@ -15,15 +15,20 @@ import ImagePicker from '../components/molecules/ImageSelector'
 
 export default function NewPlaceScreen(props) {
     const [title, setTitle] = useState('')
+    const [selectedImage, setSelectedImage] = useState()
     const dispatch = useDispatch()
 
     const titleChangeHandler = text => {
         setTitle(text)
     }
     const savePlaceHandler = () => {
-        dispatch(placeActions.addPlace(title))
+        dispatch(placeActions.addPlace(title, selectedImage))
         props.navigation.goBack()
     }
+    const imageTakenHandler = imagePath => {
+        setSelectedImage(imagePath)
+    }
+
     return (
         <ScrollView>
             <View style={styles.form}>
@@ -33,7 +38,7 @@ export default function NewPlaceScreen(props) {
                     value={title}
                     onChangeText={titleChangeHandler}
                 />
-                <ImagePicker />
+                <ImagePicker onImageTaken={imageTakenHandler} />
                 <Button
                     title="Save Place"
                     color={Colors.primary}
