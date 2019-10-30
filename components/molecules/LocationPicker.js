@@ -11,6 +11,7 @@ import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
 
 import Colors from '../../constants/Colors'
+import MapPreview from '../../components/molecules/MapPreview'
 
 const LocationPicker = props => {
     const [isFetching, setIsFetching] = useState(false)
@@ -50,13 +51,13 @@ const LocationPicker = props => {
 
     return (
         <View style={styles.locationPicker}>
-            <View style={styles.locationMap}>
+            <MapPreview style={styles.locationMap} location={location}>
                 {isFetching ? (
                     <ActivityIndicator size="large" color={Colors.primary} />
                 ) : (
                     <Text>no location picked!</Text>
                 )}
-            </View>
+            </MapPreview>
             <Button
                 title="Get Location"
                 color={Colors.primary}
@@ -77,8 +78,6 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         width: '100%',
         height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 })
 
