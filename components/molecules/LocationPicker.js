@@ -95,7 +95,9 @@ const styles = StyleSheet.create({
         height: 200,
     },
     actions: {
+        width: '100%',
         flexDirection: 'row',
+        justifyContent: 'space-around',
     },
 })
 
