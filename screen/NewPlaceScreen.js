@@ -40,7 +40,7 @@ export default function NewPlaceScreen(props) {
                     onChangeText={titleChangeHandler}
                 />
                 <ImagePicker onImageTaken={imageTakenHandler} />
-                <LocationPicker />
+                <LocationPicker navigation={props.navigation} />
                 <Button
                     title="Save Place"
                     color={Colors.primary}
