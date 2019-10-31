@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState, useCallback, useEffect } from 'react'
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Platform,
+    Alert,
+} from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
+import Colors from '../constants/Colors'
 
 export default function MapScreen(props) {
     const [selectedLocation, setSelectedLocation] = useState()
@@ -11,6 +19,22 @@ export default function MapScreen(props) {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
     }
+
+    const saveSelectedLocation = useCallback(() => {
+        if (!selectedLocation) {
+            Alert.alert(
+                'Pick Location',
+                'you have to pick location before saving',
+                [{ text: 'Okay' }]
+            )
+            return
+        }
+        props.navigation.navigate('New', { pickedLocation: selectedLocation })
+    }, [selectedLocation])
+
+    useEffect(() => {
+        props.navigation.setParams({ saveLocation: saveSelectedLocation })
+    }, [saveSelectedLocation])
 
     const selectLocationHandler = event => {
         setSelectedLocation({
@@ -40,12 +64,25 @@ export default function MapScreen(props) {
     )
 }
 
-MapScreen.navigationOptions = {
-    headerTitle: 'Map',
+MapScreen.navigationOptions = navData => {
+    const saveFn = navData.navigation.getParam('saveLocation')
+
+    return {
+        headerTitle: 'Map',
+        headerRight: (
+            <TouchableOpacity style={styles.headerButton} onPress={saveFn}>
+                <Text style={styles.headerButtonText}>Save</Text>
+            </TouchableOpacity>
+        ),
+    }
 }
 
 const styles = StyleSheet.create({
     map: {
         flex: 1,
+    },
+    headerButton: { marginHorizontal: 15 },
+    headerButtonText: {
+        color: Platform.OS === 'android' ? 'white' : Colors.primary,
     },
 })
