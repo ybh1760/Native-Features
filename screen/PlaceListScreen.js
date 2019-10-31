@@ -20,11 +20,11 @@ export default function PlaceListScreen(props) {
             <PlaceItem
                 image={itemData.item.imageUri}
                 title={itemData.item.title}
-                address={''}
+                address={itemData.item.address}
                 onSelect={() => {
                     props.navigation.navigate('Detail', {
                         title: itemData.item.title,
-                        id: itemData.item.id,
+                        placeId: itemData.item.id,
                     })
                 }}
             />

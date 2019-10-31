@@ -28,8 +28,7 @@ export const placeReducer = (state = initialState, action) => {
                 action.placeData.image,
                 action.placeData.address,
                 action.placeData.coords.lat,
-                action.placeData,
-                coords.lng
+                action.placeData.coords.lng
             )
             return {
                 places: state.places.concat(newPlace),

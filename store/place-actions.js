@@ -15,10 +15,11 @@ export const addPlace = (title, image, location) => {
         if (!response.ok) {
             throw new Error('Geocoding occured Errors')
         }
-        const resData = response.json()
+        const resData = await response.json()
         if (!resData.results) {
             throw new Error('results of response is not existed')
         }
+
         const address = resData.results[0].formatted_address
 
         const fileName = image.split('/').pop()
